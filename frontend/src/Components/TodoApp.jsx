@@ -8,7 +8,7 @@ const TodoApp = () => {
 
   const fetchTodos = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/v1/todos', {
+      const response = await fetch('https://milan-patel-to-do-list-app.vercel.app/api/v1/todos', {
         credentials: 'include'
       });
       const data = await response.json();
@@ -26,7 +26,7 @@ const TodoApp = () => {
 
   const handleAddTodo = async (todoData) => {
     try {
-      const response = await fetch('http://localhost:8000/api/v1/todos', {
+      const response = await fetch('https://milan-patel-to-do-list-app.vercel.app/api/v1/todos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const TodoApp = () => {
 
   const handleToggleComplete = async (todoId, completed) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/todos/${todoId}`, {
+      const response = await fetch(`https://milan-patel-to-do-list-app.vercel.app/api/v1/todos/${todoId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
