@@ -21,6 +21,26 @@ The app allows users to create, view, update and mark tasks as complete/incomple
   - `App.jsx`: The central component of the React app, managing routing, rendering, and coordinating all other components. It defines the application’s main structure and layout.
   - `/src/components/`: Houses all reusable UI components. Each component focuses on rendering specific parts of the application interface.
 
+## Application Screenshots
+
+### Frontend Screenshots:
+
+![image](https://github.com/user-attachments/assets/c6ddac87-9f7e-493f-9bf4-0e740f3dc0c9)
+
+![image](https://github.com/user-attachments/assets/bafb7e86-b5ea-4483-bf3d-cbaf68a48dd3)
+
+![image](https://github.com/user-attachments/assets/646358cc-2b08-42b1-bbb2-03cc42780b07)
+
+### Backend Screenshots:
+
+#### MongoDB Atlas:
+
+![image](https://github.com/user-attachments/assets/80ad55fc-b93d-4865-a4d9-e297ce25b766)
+
+
+![image](https://github.com/user-attachments/assets/8d4e7e2a-177a-4d74-a0e1-6eb2d38c79af)
+
+
 ## Setup Instructions
 
 ### Prerequisites
