@@ -2,6 +2,12 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { User } from "../models/user.model.js";
+import { generateTokens } from "../utils/jwt.js";
+
+const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production"
+};
 
 const registerUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
@@ -32,6 +38,12 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new ApiError(500, "Something went wrong while registering the user");
     }
 
+    const { accessToken, refreshToken } = await generateTokens(user._id);
+    
+    res.cookie("accessToken", accessToken, options);
+    res.cookie("refreshToken", refreshToken, options);
+
+
     return res.status(201).json(
         new ApiResponse(200, createdUser, "User registered successfully")
     );
@@ -56,6 +68,12 @@ const loginUser = asyncHandler(async (req, res) => {
         throw new ApiError(401, "Invalid credentials");
     }
 
+    const { accessToken, refreshToken } = await generateTokens(user._id);
+
+    res.cookie("accessToken", accessToken, options);
+    res.cookie("refreshToken", refreshToken, options);
+
+
     const loggedInUser = await User.findById(user._id).select("-password");
 
     return res.status(200).json(
@@ -63,4 +81,27 @@ const loginUser = asyncHandler(async (req, res) => {
     );
 });
 
-export { registerUser, loginUser };
+const logoutUser = asyncHandler(async (req, res) => {
+    res.cookie("accessToken", "", {
+        ...options,
+        maxAge: 0
+    });
+    res.cookie("refreshToken", "", {
+        ...options,
+        maxAge: 0
+    });
+
+    return res.status(200).json(
+        new ApiResponse(200, {}, "User logged out successfully")
+    );
+});
+
+const checkAuth = asyncHandler(async (req, res) => {
+    // This route will be protected by verifyJWT middleware
+    // If we reach here, user is authenticated
+    return res.status(200).json(
+        new ApiResponse(200, { success: true }, "User is authenticated")
+    );
+});
+
+export { registerUser, loginUser, logoutUser, checkAuth };
