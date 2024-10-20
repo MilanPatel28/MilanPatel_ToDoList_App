@@ -13,7 +13,7 @@ const HomePage = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/api/v1/users/logout",
+        "https://milan-patel-to-do-list-app.vercel.app/api/v1/users/logout",
         {
           method: "POST",
           credentials: "include",
