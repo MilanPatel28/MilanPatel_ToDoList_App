@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     // Check authentication status
-    fetch('http://localhost:8000/api/v1/users/check-auth', {
+    fetch('https://milan-patel-to-do-list-app.vercel.app/api/v1/users/check-auth', {
       credentials: 'include'
     })
     .then(response => response.json())
