@@ -16,7 +16,9 @@ app.use(cookieParser())
 
 // routes import
 import userRouter from './src/routes/user.routes.js'
+import todoRouter from './src/routes/todo.routes.js';
 
 app.use("/api/v1/users",userRouter);
+app.use("/api/v1/todos", todoRouter);
 
 export {app}
