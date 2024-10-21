@@ -7,7 +7,7 @@ const app = express();
 app.use(cors({
     origin: 'https://milan-patel-to-do-list-app-1gwi.vercel.app', // Your frontend URL
     credentials: true,
-    methods: 'GET, POST, PUT, DELETE',
+    methods: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
     allowedHeaders: ['Content-Type', 'Authorization']
 }))
 
