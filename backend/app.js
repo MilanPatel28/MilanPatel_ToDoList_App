@@ -4,6 +4,20 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
+// Add this before your routes
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://milan-patel-to-do-list-app.vercel.app');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    
+    // Handle OPTIONS method
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
 app.use(cors({
     origin: 'https://milan-patel-to-do-list-app-1gwi.vercel.app', // Your frontend URL
     credentials: true,
